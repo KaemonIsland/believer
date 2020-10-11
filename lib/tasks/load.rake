@@ -70,6 +70,6 @@ namespace :load do
 
     load_end = Time.now
     puts 'Upload Finished!'
-    puts "The upload took #{((download_end - download_start) / 60).round(2)} minutes."
+    puts "The upload took #{((load_end - load_start) / 60).round(2)} minutes."
   end
 end
