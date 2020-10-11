@@ -3,18 +3,30 @@
 require 'test_helper'
 
 class HotspotTest < ActiveSupport::TestCase
+  setup do
+    @hotspot = Hotspot.new(
+      name: 'test',
+      longitude: 1.234,
+      latitude: 5.678
+    )
+  end
+
+  test 'succeeds with valid values' do
+    assert @hotspot.save
+  end
+
   test 'fails without name' do
-    hotspot = Hotspot.new(longitude: 1.2345, latitude: 5.678)
-    refute hotspot.save
+    @hotspot.name = nil
+    refute @hotspot.save
   end
 
   test 'fails without longitude' do
-    hotspot = Hotspot.new(name: 'test', latitude: 5.678)
-    refute hotspot.save
+    @hotspot.longitude = nil
+    refute @hotspot.save
   end
 
   test 'fails without latitude' do
-    hotspot = Hotspot.new(name: 'test', longitude: 1.2345)
-    refute hotspot.save
+    @hotspot.latitude = nil
+    refute @hotspot.save
   end
 end
