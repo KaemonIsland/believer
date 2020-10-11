@@ -7,6 +7,7 @@ namespace :load do
   # task to load all sightings data from csv file
   # Run with `rails load:csv`
   task csv: :environment do
+    puts 'Loading File...'
     # Path to CSV file
     filepath = Rails.root.join('./ufo_sightings.csv')
 
@@ -15,6 +16,9 @@ namespace :load do
 
     # Parses csv_text for us to more easily work with
     csv = CSV.parse(csv_text, headers: true)
+
+    puts 'Adding file data to Sightings, this may take awhile'
+    load_start = Time.now
 
     csv.each do |sighting_raw|
       # Contains data used for sighting creation
@@ -29,10 +33,14 @@ namespace :load do
 
       # Create formatted Date with strptime
       # @see https://ruby-doc.org/stdlib-2.7.2/libdoc/date/rdoc/DateTime.html#method-c-strptime
-      sighting[:sighting_date] = Date.strptime(
-        sighting_data['Sighting date/time'],
-        '%d/%m/%Y %H:%M'
-      )
+      begin
+        sighting[:sighting_date] = Date.strptime(
+          sighting_data['Sighting date/time'],
+          '%d/%m/%Y %H:%M'
+        )
+      rescue StandardError
+        sighting[:sighting_date] = nil
+      end
 
       # Format duration (seconds) to minutes
       sighting[:duration] = sighting_data['duration (seconds)'].to_i / 60
@@ -59,5 +67,9 @@ namespace :load do
 
       Sighting.create!(sighting)
     end
+
+    load_end = Time.now
+    puts 'Upload Finished!'
+    puts "The upload took #{((download_end - download_start) / 60).round(2)} minutes."
   end
 end
