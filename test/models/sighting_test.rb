@@ -20,33 +20,8 @@ class SightingTest < ActiveSupport::TestCase
     assert @sighting.save
   end
 
-  test 'fails without date' do
-    @sighting.sighting_date = nil
-    refute @sighting.save
-  end
-
-  test 'fails without shape' do
-    @sighting.shape = nil
-    refute @sighting.save
-  end
-
   test 'fails without duration' do
     @sighting.duration = nil
-    refute @sighting.save
-  end
-
-  test 'fails without comments' do
-    @sighting.comments = nil
-    refute @sighting.save
-  end
-
-  test 'fails without city' do
-    @sighting.city = nil
-    refute @sighting.save
-  end
-
-  test 'fails without state' do
-    @sighting.state = nil
     refute @sighting.save
   end
 
