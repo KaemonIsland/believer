@@ -60,10 +60,10 @@ namespace :load do
 
       # Comes in the form of (29.8830556:-97.9411111)"
       # Here we remove '()' and split by ':' giving us the individual values
-      lng_lat = location[-1].delete!('()').split(':')
+      lat_lng = location[-1].delete!('()').split(':')
 
-      sighting[:longitude] = lng_lat[0].to_f
-      sighting[:latitude] = lng_lat[1].to_f
+      sighting[:latitude] = lng_lat[0].to_f
+      sighting[:longitude] = lng_lat[1].to_f
 
       Sighting.create!(sighting)
     end
