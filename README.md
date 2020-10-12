@@ -52,7 +52,7 @@ The database schema for Hotspots and Sightings is very straight-forward.
 
 ## Hotspots
 
-| table     | type    | required? |
+| column    | type    | required? |
 | --------- | ------- | --------- |
 | name      | string  | yes       |
 | latitude  | decimal | yes       |
@@ -60,7 +60,7 @@ The database schema for Hotspots and Sightings is very straight-forward.
 
 ## Sightings
 
-| table         | type     | required? |
+| column        | type     | required? |
 | ------------- | -------- | --------- |
 | sighting_date | datetime | no        |
 | shape         | string   | no        |
