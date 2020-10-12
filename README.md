@@ -88,3 +88,23 @@ I did have a challenging deciding whether I should supply default values for sig
 ## Command Line Tasks
 
 This was the first time I had created a command line task. It was surprisingly easy to do which was nice! It took me a while to find a good distance formula to use. I think I finally found one I liked, but Im not sure if the distance is accurate or not. I think I have messed something up with converting to miles. But not sure on that.
+
+# Assumptions
+
+I had assumed that all the values for each model should be required. This really hurt my time once I realized that several values were missing within the CSV file, so deciding how to change my tests/model file really slowed me down.
+
+I also figured that the first 3 steps would be the hardest, only because I havent worked with tasks and reading/writing files before. I was right that it took me longer than I had planned. But I'm also glad that I could complete them.
+
+# Next Steps
+
+There is a lot that can be done to complete this challenge! First off I would say that breaking up the large tasks would be first on my plate. They could be broken down into smaller functions during refactoring to make things a lot easier to work with in the future.
+
+I don't like the function used within the JSON file task. A loop within a loop is really slow, but because of time constraints I just went for the brute force approach. This algorithm goes through every sighting for each hotspot. This would be a lot better if we would first remove sightings for hotspots that are within range. Thus making the pool of sightings smaller each time.
+
+I also think that the method for locating sightings within 750 miles would be better off within a hotspot model.
+
+## Challenge steps
+
+Next thing would just be to create CRUD actions with a Sighting controller. Probably just use `rails g controller Sighting` then add the methods along with add a POST route for uploading sightings.
+
+To create the web-app we just need to add a view and some form elements to Add/Update/Remove additional sightings.
