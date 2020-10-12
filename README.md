@@ -10,6 +10,10 @@ This project assumes you already have a rails environment for your machine. Othe
 
 Within your command line run `git clone https://github.com/KaemonIsland/believer.git` to clone the repository
 
+## Install packages
+
+Run `rails bundle` to install the required gems and `npm install` or `yarn install` to download all the required JavaScript packages.
+
 ## Setup the DB
 
 Next, cd into the project, `cd ./believer`, and run:
