@@ -5,11 +5,11 @@ namespace :hotspot do
     output = {}
     Hotspot.all.each do |hotspot|
       nearby_sighting = []
-      Sighting.all[0..50].each do |sighting|
-        # Calculates distance in miles
-        # @see https://stackoverflow.com/questions/481144/equation-for-testing-if-a-point-is-inside-a-circle
-        distance = ((sighting.latitude - hotspot.latitude)**2 + (sighting.longitude - hotspot.longitude)**2) * 69
-        nearby_sighting << sighting if distance <= 750**2
+      Sighting.all[0..50].each do |sight|
+        # Adds sighting to hotspot if within radius
+        if hotspot.distance(sight.latitude, sight.longitude) <= 750
+          nearby_sighting << sight
+        end
       end
       output[hotspot.name.to_sym] = nearby_sighting
     end
