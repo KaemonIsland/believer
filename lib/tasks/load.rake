@@ -3,6 +3,7 @@
 require 'csv'
 
 # Creates a rake task load
+# Should use sidekiq to improve load times
 namespace :load do
   # task to load all sightings data from csv file
   # Run with `rails load:csv`
@@ -20,12 +21,9 @@ namespace :load do
     puts 'Adding file data to Sightings, this may take awhile'
     load_start = Time.now
 
-    csv.each do |sighting_raw|
+    csv.each do |sighting_data|
       # Contains data used for sighting creation
       sighting = {}
-
-      # Converts sighting to hash
-      sighting_data = sighting_raw.to_hash
 
       # Carry over unmodified values
       sighting[:shape] = sighting_data['shape']
